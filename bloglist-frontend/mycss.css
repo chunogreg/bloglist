@@ -1,0 +1,16 @@
+.error {
+  color: #341010;
+  background-color: rgb(238, 220, 220);
+  text-align: center;
+  font-size: larger;
+
+  padding: 10px;
+}
+
+.posted {
+  color: #192b1a;
+  background-color: rgb(228, 243, 233);
+  text-align: center;
+  padding: 10px;
+  font-size: larger;
+}

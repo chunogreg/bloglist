@@ -18,20 +18,28 @@ const UserList = () => {
   }
 
   return (
-    <div>
+    <div style={{ marginLeft: 20 }}>
+      <h2>Users</h2>
       <TableContainer component={Paper}>
         <Table>
-          <TableHead>
+          <TableHead sx={{ background: "#d1d3dbe6" }}>
             <TableRow>
-              {" "}
-              <TableCell>Name</TableCell>
-              <TableCell> Username</TableCell>
-              <TableCell> Blogs Posted </TableCell>
+              <TableCell>
+                <strong>Name</strong>
+              </TableCell>
+              <TableCell>
+                {" "}
+                <strong>Username</strong>
+              </TableCell>
+              <TableCell>
+                {" "}
+                <strong>Blogs posted</strong>
+              </TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
             {users.map((user) => (
-              <TableRow>
+              <TableRow key={user.id}>
                 <TableCell>
                   <Link to={`/users/${user.id}`}>{user.name}</Link>
                 </TableCell>
@@ -43,17 +51,6 @@ const UserList = () => {
         </Table>
       </TableContainer>
     </div>
-
-    // <div>
-    //   <ul>
-    //     {users.map((user) => (
-    //       <li style={{ marginBottom: 10 }} key={user.id}>
-    //         {/* <Link to={`/blogs/${blog.id}`}> */}
-    //         {user.name} - {user.username} {/* </Link> */}
-    //       </li>
-    //     ))}
-    //   </ul>{" "}
-    // </div>
   );
 };
 

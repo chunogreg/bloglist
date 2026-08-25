@@ -18,7 +18,7 @@ export const useBlogs = () => {
       const response = await axios.get("/api/users");
       return response.data;
     },
-    retry: 1,
+    retry: 15,
   });
 
   const newMutation = useMutation({

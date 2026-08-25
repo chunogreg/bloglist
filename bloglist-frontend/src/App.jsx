@@ -17,6 +17,7 @@ import { AppBar, Button, Toolbar, Typography, Box } from "@mui/material";
 import { useBlogs } from "./hooks/useBlogs";
 import UserContext from "./hooks/UserContext";
 import UserList from "./components/UserList";
+import UserDetails from "./components/UserDetails";
 
 const App = () => {
   const { isLoading } = useBlogs();
@@ -111,6 +112,7 @@ const App = () => {
         />
 
         <Route path="/users" element={<UserList />}></Route>
+        <Route path="/users/:id" element={<UserDetails />}></Route>
 
         <Route path="/create" element={<AddBlog />} />
       </Routes>

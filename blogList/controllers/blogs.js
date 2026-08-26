@@ -118,4 +118,22 @@ blogsRouter.get("/:id", async (req, res) => {
   return res.json(blog);
 });
 
+blogsRouter.post("/:id/comments", async (req, res) => {
+  console.log("===BODY===:", req.body);
+  console.log("==COMMENT==:", req.body.comment);
+
+  const { comment } = req.body;
+  const { id } = req.params;
+  const blog = await Blog.findById(id);
+
+  if (!blog) return res.status(404).end();
+  if (comment.length < 3)
+    return res.status(400).json({ error: "your comment is too short" });
+
+  blog.comments.push(comment);
+  const savedcomment = await blog.save();
+
+  res.status(201).json(savedcomment);
+});
+
 module.exports = blogsRouter;

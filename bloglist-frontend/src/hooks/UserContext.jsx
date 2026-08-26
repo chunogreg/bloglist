@@ -22,9 +22,12 @@ export const UserContextProvider = (props) => {
   };
 
   const setUserAfterRefresh = useCallback(async () => {
-    const user = await getUser();
-    setToken(user.token);
-    setUser(user);
+    const user = getUser();
+    if (user) {
+      setToken(user.token);
+      setUser(user);
+    }
+
     //return user;
   }, []);
 

@@ -44,6 +44,21 @@ export const useBlogs = () => {
     },
   });
 
+  const newCommentMutation = useMutation({
+    mutationFn: ({ newComment, blogObj }) => {
+      const request = axios.post(`/api/blogs/${blogObj.id}/comments`, {
+        comment: newComment,
+      });
+      return request.then((response) => response.data);
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["blogs"] });
+    },
+    onError: (error) => {
+      console.log("LENGTH ERROR: ", error.response.data.error);
+    },
+  });
+
   return {
     blogs: result.data,
     users: userResult.data,
@@ -59,6 +74,12 @@ export const useBlogs = () => {
       updateBlogMutation.mutate({
         ...blogObj,
         likes: blogObj.likes + 1,
+      });
+    },
+    addComment: (newComment, blogObj) => {
+      newCommentMutation.mutate({
+        newComment,
+        blogObj,
       });
     },
   };

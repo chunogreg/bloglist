@@ -4,7 +4,7 @@ import { useContext } from "react";
 
 const Notification = () => {
   const { message } = useContext(NotificationContext);
-  console.log("===MESSAGE===", message);
+
   if (!message) return null;
 
   return (

@@ -12,7 +12,7 @@ const LoginForm = () => {
 
   const handleLogin = async (event) => {
     event.preventDefault();
-    console.log(user, "logging in . . .");
+    console.log("logging in . . .", user);
 
     try {
       await login({
@@ -24,6 +24,7 @@ const LoginForm = () => {
       passwordField.reset();
 
       loginSuccess();
+      console.log("==LOGGED IN USER==", user);
     } catch {
       loginFailure();
       usernameField.reset();

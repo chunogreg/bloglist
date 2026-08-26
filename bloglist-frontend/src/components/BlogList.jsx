@@ -3,11 +3,8 @@ import { useBlogs } from "../hooks/useBlogs";
 
 const BlogList = () => {
   const { blogs } = useBlogs();
-  // if (isLoading) {
-  //   return <div>loading data...</div>;
-  // }
 
-  console.log("===BLOGS ARE HERE===", blogs[3].id);
+  //console.log("===BLOGS ARE HERE===", blogs[3].id);
 
   const sortedBlogs = blogs.sort((a, b) => b.likes - a.likes);
 

@@ -6,8 +6,7 @@ export const getUser = () => {
   const loggedUserJson = window.localStorage.getItem("loggedInUser");
 
   if (loggedUserJson) {
-    const user = JSON.parse(loggedUserJson);
-    return user;
+    return JSON.parse(loggedUserJson);
   }
 };
 

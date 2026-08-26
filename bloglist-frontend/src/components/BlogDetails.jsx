@@ -1,10 +1,16 @@
 import { Link, useParams, Navigate } from "react-router-dom";
-import { Button } from "@mui/material";
+import { Button, TextField } from "@mui/material";
 import { useBlogs } from "../hooks/useBlogs";
+import UserContext from "../hooks/UserContext";
+import { useContext } from "react";
+import { useField } from "../hooks/useField";
 
-const BlogDetails = ({ user }) => {
+const BlogDetails = () => {
   const { id } = useParams();
-  const { blogs, isLoading, deleteBlog, updateBlog } = useBlogs();
+  const { user } = useContext(UserContext);
+  const { blogs, isLoading, deleteBlog, updateBlog, addComment } = useBlogs();
+  const commentField = useField("text");
+
   if (isLoading) {
     return <div>loading data...</div>;
   }
@@ -21,10 +27,10 @@ const BlogDetails = ({ user }) => {
     <div
       style={{
         marginLeft: 20,
-        boxShadow: " 0px 4px 10px #b4bdc5",
+        boxShadow: " 0px 4px 10px #a2a6aa",
         padding: 20,
         width: 600,
-        background: "#f8f7f3e3",
+        background: "#eff0f4e3",
       }}
     >
       <div>
@@ -81,6 +87,37 @@ const BlogDetails = ({ user }) => {
             </p>
           </>
         )}
+        <div>
+          <h3>comments</h3>
+          <div style={{ marginBottom: 20 }}>
+            <TextField
+              variant="outlined"
+              label="your comment goes here"
+              {...commentField.vals}
+              size="small"
+              sx={{
+                marginRight: 1,
+                background: "#ffffff",
+                borderColor: "#0f1012",
+              }}
+            />
+            <Button
+              variant="contained"
+              size="medium"
+              onClick={() => {
+                addComment(commentField.vals.value, blog);
+                commentField.reset();
+              }}
+            >
+              add comment
+            </Button>{" "}
+          </div>
+          <div style={{ marginLeft: "33px", marginTop: "15px" }}>
+            {blog.comments.map((comment) => (
+              <li key={comment}>{comment}</li>
+            ))}
+          </div>
+        </div>
       </div>
     </div>
   );

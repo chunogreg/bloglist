@@ -1,6 +1,7 @@
 import { useEffect, useContext } from "react";
 
 import Notification from "./components/Notification";
+
 import LoginForm from "./components/LoginForm";
 import BlogList from "./components/BlogList";
 import BlogDetails from "./components/BlogDetails";
@@ -18,6 +19,8 @@ import { useBlogs } from "./hooks/useBlogs";
 import UserContext from "./hooks/UserContext";
 import UserList from "./components/UserList";
 import UserDetails from "./components/UserDetails";
+import PageNotFound from "./components/PageNotFound";
+import ErrorBoundary from "./components/ErrorBoundary";
 
 const App = () => {
   const { isLoading } = useBlogs();
@@ -114,7 +117,15 @@ const App = () => {
         <Route path="/users" element={<UserList />}></Route>
         <Route path="/users/:id" element={<UserDetails />}></Route>
 
-        <Route path="/create" element={<AddBlog />} />
+        <Route
+          path="/create"
+          element={
+            <ErrorBoundary>
+              <AddBlog />
+            </ErrorBoundary>
+          }
+        />
+        <Route path="*" element={<PageNotFound />} />
       </Routes>
     </Router>
   );

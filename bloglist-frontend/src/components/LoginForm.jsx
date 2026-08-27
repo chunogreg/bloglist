@@ -8,23 +8,20 @@ const LoginForm = () => {
   const usernameField = useField("text");
   const passwordField = useField("password");
   const { loginSuccess, loginFailure } = useContext(NotificationContext);
-  const { login, user } = useContext(UserContext);
+  const { login } = useContext(UserContext);
 
   const handleLogin = async (event) => {
     event.preventDefault();
-    console.log("logging in . . .", user);
+    console.log("logging in . . .");
 
     try {
       await login({
         username: usernameField.vals.value,
         password: passwordField.vals.value,
       });
-
+      loginSuccess();
       usernameField.reset();
       passwordField.reset();
-
-      loginSuccess();
-      console.log("==LOGGED IN USER==", user);
     } catch {
       loginFailure();
       usernameField.reset();

@@ -38,6 +38,8 @@ const AddBlog = () => {
   if (isLoading) {
     return <div>loading data...</div>;
   }
+  //I simulated error here for exercise 7.8: Error boundary.
+  //throw new Error("simulated error");
   return (
     <div style={{ marginLeft: 100 }}>
       <form onSubmit={addBlog}>

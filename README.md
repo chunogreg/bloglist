@@ -30,19 +30,21 @@ bloglist/
 
 ## Running Locally
 
-clone the repository
+Clone the repository:
 
-```bash
-git clone https://github.com/chunogreg/bloglist.git
-cd bloglist
-```
+    git clone https://github.com/chunogreg/bloglist.git
+    cd bloglist
 
-Install dependencies and start the application:
+Install dependencies:
 
-```bash
-npm install
-npm run dev
-```
+    npm install
+    cd backend && npm install
+    cd ../frontend && npm install
+    cd ..
+
+Start both applications:
+
+    npm run dev
 
 ## Testing
 
